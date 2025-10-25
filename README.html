@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Guía práctica: Interpretación de incertidumbre — Granulometría</title>
+    <style>
+        /* Paleta de Colores y Estilos Base (basado en tu template) */
+        :root {
+            --main-color: #3498db;
+            --header-bg: #ecf0f1;
+            --header-text: #2c3e50;
+            --dark-text: #333333;
+            --attention-color: #f39c12;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: var(--dark-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px; 
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border-top: 6px solid var(--main-color);
+        }
+        .header {
+            background-color: var(--header-bg); 
+            color: var(--header-text);
+            text-align: center;
+            padding: 20px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .content {
+            padding: 25px 30px;
+        }
+        .section-title {
+            color: var(--main-color);
+            font-size: 17px;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+        .info-box {
+            padding: 14px;
+            margin: 18px 0;
+            background-color: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-left: 5px solid #4caf50;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        .example-box {
+            padding: 14px;
+            margin: 14px 0;
+            background-color: #fff8e1;
+            border: 1px solid #f0c36d;
+            border-left: 5px solid #f39c12;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        .small {
+            font-size: 13px;
+            color: #555;
+        }
+        table.report {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        table.report th, table.report td {
+            border: 1px solid #e6e6e6;
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+        table.report th {
+            background-color: #fafafa;
+            color: var(--header-text);
+            font-weight: 700;
+        }
+        .cta-button {
+            display: block;
+            width: 80%;
+            margin: 22px auto 18px auto;
+            padding: 12px 18px;
+            background-color: var(--attention-color);
+            color: white !important;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+        }
+        .footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            font-size: 12px;
+            color: #666666;
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .kbd {
+            font-family: monospace;
+            background:#f3f3f3;
+            padding:2px 6px;
+            border-radius:4px;
+            font-size:13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Guía práctica: Interpretación de incertidumbre — Granulometría
+        </div>
+
+        <div class="content">
+            <p>Equipo de Control de Calidad,</p>
+
+            <p>Adjunto una explicación breve y práctica de los resultados del estudio Gage R&R que realizamos con 4 analistas × 3 réplicas.</p>
+
+            <div class="section-title">Resumen ejecutivo</div>
+            <div class="info-box">
+                <p style="margin:0; font-weight:700;">Resultado principal (resumen):</p>
+                <ul style="margin:8px 0 0 18px;">
+                    <li><strong>Reproducibilidad (entre analistas):</strong> No detectada (los analistas miden de forma consistente).</li>
+                    <li><strong>Repetibilidad (dentro del mismo analista):</strong> Es la fuente principal de variación.</li>
+                    <li><strong>Incertidumbre estándar combinada (u):</strong> 2.15 unidades.</li>
+                    <li><strong>Incertidumbre expandida (U) con k=2 (95%):</strong> <strong>±4.30</strong> (usar para decisiones críticas).</li>
+                </ul>
+            </div>
+
+            <div class="section-title">Qué significa en la práctica</div>
+            <p class="small">
+                La incertidumbre nos da un rango alrededor del valor medido donde probablemente esté el valor "verdadero".  
+                Por ejemplo, si medimos <strong>92%</strong> y la incertidumbre expandida es <strong>±4.3%</strong>, entonces el valor real podría estar entre <strong>87.7%</strong> y <strong>96.3%</strong>.
+            </p>
+
+            <div class="section-title">Cómo usar esto para decidir un remuestreo</div>
+            <ol>
+                <li>
+                    <strong>Comparar la distancia al límite con la incertidumbre:</strong> si la diferencia entre el resultado y la especificación es <em>menor</em> que la incertidumbre, el resultado es dudoso.
+                </li>
+                <li>
+                    <strong>Si el resultado está claramente fuera del rango de la incertidumbre expandida (U):</strong> se puede dictaminar rechazo o aceptación con confianza.
+                </li>
+                <li>
+                    <strong>Si está cerca del límite (dentro de la incertidumbre expandida (u)):</strong> evaluar si remuestrear tiene sentido.
+                </li>
+            </ol>
+
+            <div class="section-title">Ejemplos rápidos</div>
+
+            <div class="example-box">
+                <p style="margin:0; font-weight:700;">Ejemplo A — Uso didáctico (tu formato):</p>
+                <table class="report">
+                    <tr><th>Producto</th><th>Resultado</th><th>Especificación</th><th>Incertidumbre</th><th>Conclusión práctica</th></tr>
+                    <tr>
+                        <td>FAB-49</td>
+                        <td>92 %</td>
+                        <td>95 % (mín)</td>
+                        <td>±2.0 % (ejemplo)</td>
+                        <td>
+                            Aun si el verdadero fuera el mejor caso (+2 %) = 94 % → sigue POR DEBAJO del límite → <strong>no conviene remuestrear</strong>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FAB-49</td>
+                        <td>94.3 %</td>
+                        <td>95 % (mín)</td>
+                        <td>±2.0 % (ej.)</td>
+                        <td>
+                            Intervalo: 92.3 % – 96.3 %. Existe probabilidad real de que la muestra sea aceptada → <strong>remuestreo puede ser útil</strong>.
+                        </td>
+                    </tr>
+                </table>
+                <p class="small" style="margin:6px 0 0 0;">
+                    Nota: el ejemplo usa ±2 % para ilustrar — en nuestro estudio la incertidumbre real fue <strong>±4.3 % (k=2)</strong>.
+                </p>
+            </div>
+
+            <div class="section-title">Interpretación de vuestro estudio (valor real)</div>
+            <table class="report">
+                <tr><th>Concepto</th><th>Valor</th></tr>
+                <tr><td>u (incertidumbre estándar combinada)</td><td>1.76 (unidades)</td></tr>
+                <tr><td>U (incertidumbre expandida, k=2, 95%)</td><td>±3.51 (unidades)</td></tr>
+                <tr><td>% Repetibilidad (consistencia entre mis repeticiones)</td><td>~100 % (fuente principal)</td></tr>
+                <tr><td>% Reproducibilidad (consistencia entre mis resultados y los de mis compañerxs)</td><td>0 % (no detectada)</td></tr>
+            </table>
+
+            <div class="section-title">Recomendaciones</div>
+            <ul>
+                <li>Priorizar acciones para <strong>mejorar repetibilidad</strong> (qué tan precisos son entre sus mismos resultados): calibración/estado del rotap, revisar tamices, estandarizar carga y tiempo, fijar procedimientos paso a paso y entrenamiento.</li>
+                <li>Usar la incertidumbre en el flujo de toma de decisiones: crear una regla clara de remuestreo (ej.: remuestrear sólo si la diferencia al límite ≤ U y si el remuestreo puede cambiar la decisión).</li>
+            </ul>
+
+        </div>
+
+        <div class="footer">
+            Documento generado por el equipo de Calidad — usar como guía de interpretación.
+        </div>
+    </div>
+</body>
+</html>
